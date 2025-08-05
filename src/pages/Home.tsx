@@ -36,7 +36,7 @@ const Home = () => {
                 </Button>
               </Link>
               <Link to="/nossa-historia">
-                <Button size="lg" variant="outline" className="border-2 border-white/80 text-white hover:text-terra backdrop-blur-sm shadow-terra transition-smooth hover:scale-105 w-full sm:w-auto min-w-[200px] h-14 bg-gray-700 hover:bg-gray-600">
+                <Button size="lg" variant="outline" className="border-2 border-white/80 text-white hover:text-terra backdrop-blur-sm shadow-terra transition-smooth hover:scale-105 w-full sm:w-auto min-w-[200px] h-14 bg-transparent">
                   <Heart className="mr-3 h-5 w-5" />
                   Nossa História
                 </Button>
