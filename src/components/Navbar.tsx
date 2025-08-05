@@ -30,80 +30,102 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-b shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav className="bg-card/95 backdrop-blur-md border-b border-border/50 shadow-amazonia sticky top-0 z-50">
+      <div className="container mx-auto px-4 lg:px-6">
+        <div className="flex items-center justify-between h-16 lg:h-18">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8 text-green-600" />
-            <span className="text-xl font-bold text-green-800">
-              Vitrine da Amazônia
-            </span>
+          <Link to="/" className="flex items-center space-x-3 transition-smooth hover:scale-105">
+            <div className="relative">
+              <Leaf className="h-8 w-8 lg:h-10 lg:w-10 text-primary" />
+              <div className="absolute inset-0 animate-pulse opacity-30">
+                <Leaf className="h-8 w-8 lg:h-10 lg:w-10 text-primary" />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg lg:text-xl font-bold text-primary leading-tight">
+                Vitrine da Amazônia
+              </span>
+              <span className="text-xs text-muted-foreground font-medium hidden sm:block">
+                Belém • Pará
+              </span>
+            </div>
           </Link>
 
           {/* Search Bar - Hidden on mobile */}
-          <div className="hidden md:flex flex-1 max-w-md mx-8">
+          <div className="hidden lg:flex flex-1 max-w-xl mx-8">
             <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
-                placeholder="Buscar produtos, produtores..." 
-                className="pl-10"
+                placeholder="Buscar açaí, artesanato, cosméticos..." 
+                className="pl-12 h-11 rounded-full border-border/60 bg-background/50 backdrop-blur-sm focus:bg-background transition-all duration-300 focus:shadow-amazonia"
               />
             </div>
           </div>
 
           {/* Navigation Links - Hidden on mobile */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-8">
             <Link 
               to="/produtos" 
-              className="text-gray-700 hover:text-green-600 transition-colors"
+              className="text-foreground/80 hover:text-primary transition-smooth font-medium relative group"
             >
               Produtos
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link 
               to="/produtores" 
-              className="text-gray-700 hover:text-green-600 transition-colors"
+              className="text-foreground/80 hover:text-primary transition-smooth font-medium relative group"
             >
               Produtores
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link 
               to="/sobre" 
-              className="text-gray-700 hover:text-green-600 transition-colors"
+              className="text-foreground/80 hover:text-primary transition-smooth font-medium relative group"
             >
-              Sobre
+              Nossa História
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
 
           {/* User Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             {/* User Type Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="hidden md:flex">
+                <Button variant="outline" size="sm" className="hidden lg:flex shadow-sm hover:shadow-amazonia transition-smooth">
                   <User className="h-4 w-4 mr-2" />
                   {getUserTypeLabel()}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => setUserType('consumer')}>
-                  Consumidor Final
+              <DropdownMenuContent className="w-48 bg-card/95 backdrop-blur-md border-border/60 shadow-terra">
+                <DropdownMenuItem 
+                  onClick={() => setUserType('consumer')}
+                  className="hover:bg-accent/50 transition-smooth"
+                >
+                  🛍️ Consumidor Final
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setUserType('retailer')}>
-                  Lojista/Revendedor
+                <DropdownMenuItem 
+                  onClick={() => setUserType('retailer')}
+                  className="hover:bg-accent/50 transition-smooth"
+                >
+                  🏪 Lojista/Revendedor
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setUserType('producer')}>
-                  Produtor
+                <DropdownMenuItem 
+                  onClick={() => setUserType('producer')}
+                  className="hover:bg-accent/50 transition-smooth"
+                >
+                  🌱 Produtor Local
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* Cart */}
             <Link to="/carrinho">
-              <Button variant="outline" size="sm" className="relative">
-                <ShoppingCart className="h-4 w-4" />
+              <Button variant="outline" size="sm" className="relative shadow-sm hover:shadow-amazonia transition-smooth group">
+                <ShoppingCart className="h-4 w-4 group-hover:scale-110 transition-transform" />
                 {cartItems > 0 && (
                   <Badge 
-                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-destructive animate-pulse"
                     variant="destructive"
                   >
                     {cartItems}
@@ -115,22 +137,28 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="md:hidden">
+                <Button variant="outline" size="sm" className="lg:hidden shadow-sm hover:shadow-amazonia transition-smooth">
                   <Menu className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end">
-                <DropdownMenuItem asChild>
-                  <Link to="/produtos">Produtos</Link>
+              <DropdownMenuContent className="w-64 bg-card/95 backdrop-blur-md border-border/60 shadow-terra" align="end">
+                <DropdownMenuItem asChild className="hover:bg-accent/50 transition-smooth">
+                  <Link to="/produtos" className="flex items-center">
+                    🌿 Produtos Regionais
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/produtores">Produtores</Link>
+                <DropdownMenuItem asChild className="hover:bg-accent/50 transition-smooth">
+                  <Link to="/produtores" className="flex items-center">
+                    👥 Produtores Locais
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/sobre">Sobre</Link>
+                <DropdownMenuItem asChild className="hover:bg-accent/50 transition-smooth">
+                  <Link to="/sobre" className="flex items-center">
+                    📖 Nossa História
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <User className="h-4 w-4 mr-2" />
+                <DropdownMenuItem className="hover:bg-accent/50 transition-smooth">
+                  <User className="h-4 w-4 mr-3" />
                   {getUserTypeLabel()}
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -139,12 +167,12 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Search */}
-        <div className="md:hidden pb-4">
+        <div className="lg:hidden pb-4 pt-2">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input 
-              placeholder="Buscar produtos..." 
-              className="pl-10"
+              placeholder="Buscar açaí, artesanato, cosméticos..." 
+              className="pl-12 h-11 rounded-full border-border/60 bg-background/80 backdrop-blur-sm focus:bg-background transition-all duration-300"
             />
           </div>
         </div>
