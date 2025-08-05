@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Users, Search, Star, Heart, MessageCircle, Leaf, Fish, Palette, Sparkles } from "lucide-react";
+import { MapPin, Users, Search, Star, Heart, MessageCircle, Leaf, Fish, Palette, Sparkles, Shield, QrCode } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,9 @@ const mockProducers = [
     description: "Produtores tradicionais de açaí das ilhas de Belém, mantendo técnicas ancestrais de extração.",
     products: 15,
     category: "alimentos",
-    established: "1985"
+    established: "1985",
+    certified: true,
+    nftId: "AZ001"
   },
   {
     id: 2,
@@ -33,7 +35,9 @@ const mockProducers = [
     description: "Grupo de artesãs especializadas em cerâmica marajoara e peças decorativas tradicionais.",
     products: 32,
     category: "artesanato",
-    established: "1992"
+    established: "1992",
+    certified: true,
+    nftId: "AZ002"
   },
   {
     id: 3,
@@ -46,7 +50,8 @@ const mockProducers = [
     description: "Pescadores tradicionais que fornecem peixes frescos direto das águas amazônicas.",
     products: 8,
     category: "alimentos",
-    established: "1960"
+    established: "1960",
+    certified: false
   },
   {
     id: 4,
@@ -59,7 +64,9 @@ const mockProducers = [
     description: "Produção de cosméticos naturais usando ingredientes amazônicos como andiroba e copaíba.",
     products: 28,
     category: "cosmeticos",
-    established: "2005"
+    established: "2005",
+    certified: true,
+    nftId: "AZ003"
   },
   {
     id: 5,
@@ -72,7 +79,8 @@ const mockProducers = [
     description: "Produção familiar de farinha de mandioca tradicional em forno de barro há 3 gerações.",
     products: 6,
     category: "alimentos",
-    established: "1950"
+    established: "1950",
+    certified: false
   },
   {
     id: 6,
@@ -85,7 +93,9 @@ const mockProducers = [
     description: "Criação de joias únicas usando sementes amazônicas, madeiras nobres e pedras regionais.",
     products: 45,
     category: "artesanato",
-    established: "1998"
+    established: "1998",
+    certified: true,
+    nftId: "AZ004"
   }
 ];
 
@@ -206,10 +216,20 @@ const Produtores = () => {
                       target.src = "/placeholder.svg";
                     }}
                   />
-                  <div className="absolute top-4 left-4">
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <Badge className="bg-primary/90 text-primary-foreground shadow-lg">
                       Desde {producer.established}
                     </Badge>
+                    {producer.certified ? (
+                      <Badge className="bg-amazonia/90 text-white shadow-lg flex items-center gap-1">
+                        <QrCode className="h-3 w-3" />
+                        NFT #{producer.nftId}
+                      </Badge>
+                    ) : (
+                      <Badge variant="outline" className="bg-yellow-500/90 text-white border-yellow-400 shadow-lg">
+                        Em Certificação
+                      </Badge>
+                    )}
                   </div>
                   <div className="absolute top-4 right-4">
                     <Button
@@ -263,10 +283,21 @@ const Produtores = () => {
                     </div>
                   </div>
 
-                  <Button className="w-full mt-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <MessageCircle className="h-4 w-4 mr-2" />
-                    Conhecer Produtor
-                  </Button>
+                  <div className="flex gap-2 mt-4">
+                    <Button className="flex-1 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <MessageCircle className="h-4 w-4 mr-2" />
+                      Conhecer
+                    </Button>
+                    {producer.certified && (
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="border-amazonia text-amazonia hover:bg-amazonia hover:text-white"
+                      >
+                        <Shield className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             </Link>

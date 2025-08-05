@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Star, Leaf, Users, ShoppingBag, Award, ArrowRight, Fish, Palette, Sparkles, Shield, Heart } from "lucide-react";
+import { MapPin, Star, Leaf, Users, ShoppingBag, Award, ArrowRight, Fish, Palette, Sparkles, Shield, Heart, Zap, QrCode, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -17,9 +17,9 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         
-        <div className="relative z-10 container mx-auto px-4 lg:px-6 h-full min-h-[90vh] flex items-center">
-          <div className="max-w-4xl text-white">
-            <div className="flex items-center mb-6 space-x-2">
+        <div className="relative z-10 container mx-auto px-4 lg:px-6 h-full min-h-[90vh] flex items-center justify-center">
+          <div className="max-w-5xl text-white text-center">
+            <div className="flex items-center justify-center mb-6 space-x-2">
               <MapPin className="h-6 w-6 text-amazonia" />
               <span className="text-amazonia font-semibold text-lg tracking-wide">Belém • Pará • Brasil</span>
             </div>
@@ -28,19 +28,19 @@ const Home = () => {
               Vitrine da <span className="text-amazonia">Amazônia</span>
             </h1>
             
-            <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-3xl">
+            <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-4xl mx-auto">
               Conectando a riqueza cultural e natural de Belém diretamente ao mundo. 
-              Produtos autênticos com selo de origem, histórias verdadeiras, economia que preserva.
+              Produtos autênticos com certificação blockchain, histórias verdadeiras, economia que preserva.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link to="/produtos">
                 <Button size="lg" className="bg-amazonia hover:bg-amazonia/90 text-white shadow-amazonia transition-smooth hover:scale-105 w-full sm:w-auto min-w-[200px] h-14">
                   <Leaf className="mr-3 h-5 w-5" />
                   Explorar Produtos
                 </Button>
               </Link>
-              <Link to="/sobre">
+              <Link to="/nossa-historia">
                 <Button 
                   size="lg" 
                   variant="outline" 
@@ -52,10 +52,14 @@ const Home = () => {
               </Link>
             </div>
             
-            <div className="flex flex-wrap items-center gap-6 text-white/80">
+            <div className="flex flex-wrap items-center justify-center gap-8 text-white/80">
+              <div className="flex items-center space-x-2">
+                <QrCode className="h-5 w-5 text-amazonia" />
+                <span className="text-sm font-medium">Certificação Blockchain</span>
+              </div>
               <div className="flex items-center space-x-2">
                 <Shield className="h-5 w-5 text-amazonia" />
-                <span className="text-sm font-medium">Selo de Autenticidade</span>
+                <span className="text-sm font-medium">NFT de Autenticidade</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Users className="h-5 w-5 text-amazonia" />
@@ -110,25 +114,104 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Jornada Section */}
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
+              Sua Jornada
+            </Badge>
+            <h2 className="text-3xl lg:text-5xl font-bold text-terra mb-6">
+              Como Funciona
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Do produtor à sua casa: uma jornada transparente com certificação blockchain
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8">
+            {[
+              {
+                step: "01",
+                icon: Users,
+                title: "Conheça o Produtor",
+                description: "Cada produto tem um rosto, uma história e uma localização específica em Belém"
+              },
+              {
+                step: "02", 
+                icon: QrCode,
+                title: "Certificação NFT",
+                description: "Cada empresa recebe uma NFT única que certifica sua autenticidade via blockchain"
+              },
+              {
+                step: "03",
+                icon: ShoppingBag,
+                title: "Compra Segura",
+                description: "Produtos frescos e autênticos entregues diretamente na sua casa"
+              },
+              {
+                step: "04",
+                icon: Globe,
+                title: "Impacto Real",
+                description: "Sua compra fortalece a economia local e preserva tradições amazônicas"
+              }
+            ].map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <Card 
+                  key={index}
+                  className="text-center group hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50 relative"
+                >
+                  <CardContent className="p-6 lg:p-8">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
+                        {step.step}
+                      </div>
+                    </div>
+                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 mt-4 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="h-8 w-8 lg:h-10 lg:w-10 text-primary group-hover:scale-110 transition-transform" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-terra mb-3">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm">{step.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Blockchain Features Section */}
       <section className="py-16 lg:py-24 bg-accent/10">
         <div className="container mx-auto px-4 lg:px-6">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-secondary/20 text-secondary border-secondary/30">
+              Tecnologia Blockchain
+            </Badge>
+            <h2 className="text-3xl lg:text-5xl font-bold text-terra mb-6">
+              Certificação do Futuro
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Primeira plataforma amazônica com certificação blockchain e NFTs de autenticidade
+            </p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                icon: Leaf,
-                title: "Selo de Autenticidade",
-                description: "Produtos certificados com origem garantida"
+                icon: QrCode,
+                title: "NFT de Empresa",
+                description: "Cada empresa certificada recebe uma NFT única que comprova sua autenticidade e origem amazônica"
               },
               {
-                icon: Users,
-                title: "Economia Local",
-                description: "Apoie diretamente produtores e artesãos paraenses"
+                icon: Shield,
+                title: "Selo Blockchain",
+                description: "Tecnologia blockchain garante que não é possível falsificar ou duplicar certificações"
               },
               {
-                icon: ShoppingBag,
-                title: "Entrega Segura",
-                description: "Receba produtos frescos e bem embalados em casa"
+                icon: Zap,
+                title: "Rastreabilidade Total",
+                description: "Do produtor até você: acompanhe toda a jornada do produto com transparência total"
               }
             ].map((feature, index) => {
               const Icon = feature.icon;
@@ -138,7 +221,7 @@ const Home = () => {
                   className="text-center group hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50"
                 >
                   <CardContent className="p-6 lg:p-8">
-                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all">
                       <Icon className="h-8 w-8 lg:h-10 lg:w-10 text-primary group-hover:scale-110 transition-transform" />
                     </div>
                     <h3 className="text-xl font-semibold text-terra mb-3">{feature.title}</h3>
