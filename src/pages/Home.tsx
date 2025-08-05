@@ -3,18 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Star, Leaf, Users, ShoppingBag, Award, ArrowRight, Fish, Palette, Sparkles, Shield, Heart, Zap, QrCode, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Home = () => {
-  return (
-    <div className="min-h-screen bg-gradient-amazonia">
+  return <div className="min-h-screen bg-gradient-amazonia">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] bg-gradient-to-br from-terra/20 via-primary/10 to-secondary/20 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2070')",
-          }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: "url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2070')"
+      }} />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         
         <div className="relative z-10 container mx-auto px-4 lg:px-6 h-full min-h-[90vh] flex items-center justify-center">
@@ -41,11 +36,7 @@ const Home = () => {
                 </Button>
               </Link>
               <Link to="/nossa-historia">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-2 border-white/80 text-white hover:bg-white hover:text-terra backdrop-blur-sm shadow-terra transition-smooth hover:scale-105 w-full sm:w-auto min-w-[200px] h-14"
-                >
+                <Button size="lg" variant="outline" className="border-2 border-white/80 text-white hover:text-terra backdrop-blur-sm shadow-terra transition-smooth hover:scale-105 w-full sm:w-auto min-w-[200px] h-14 bg-gray-700 hover:bg-gray-600">
                   <Heart className="mr-3 h-5 w-5" />
                   Nossa História
                 </Button>
@@ -86,18 +77,25 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-            {[
-              { name: "Açaí e Polpas", icon: Fish, count: "150+ produtos" },
-              { name: "Artesanato", icon: Palette, count: "300+ peças" },
-              { name: "Cosméticos", icon: Sparkles, count: "80+ produtos" },
-              { name: "Peixes e Frutos do Mar", icon: Fish, count: "45+ produtos" }
-            ].map((category, index) => {
-              const Icon = category.icon;
-              return (
-                <Card 
-                  key={index}
-                  className="group cursor-pointer hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50"
-                >
+            {[{
+            name: "Açaí e Polpas",
+            icon: Fish,
+            count: "150+ produtos"
+          }, {
+            name: "Artesanato",
+            icon: Palette,
+            count: "300+ peças"
+          }, {
+            name: "Cosméticos",
+            icon: Sparkles,
+            count: "80+ produtos"
+          }, {
+            name: "Peixes e Frutos do Mar",
+            icon: Fish,
+            count: "45+ produtos"
+          }].map((category, index) => {
+            const Icon = category.icon;
+            return <Card key={index} className="group cursor-pointer hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50">
                   <CardContent className="p-4 lg:p-6 text-center">
                     <div className="w-12 h-12 lg:w-16 lg:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
                       <Icon className="h-6 w-6 lg:h-8 lg:w-8 text-primary group-hover:scale-110 transition-transform" />
@@ -107,9 +105,8 @@ const Home = () => {
                     </h3>
                     <p className="text-sm text-muted-foreground">{category.count}</p>
                   </CardContent>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
         </div>
       </section>
@@ -130,38 +127,29 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8">
-            {[
-              {
-                step: "01",
-                icon: Users,
-                title: "Conheça o Produtor",
-                description: "Cada produto tem um rosto, uma história e uma localização específica em Belém"
-              },
-              {
-                step: "02", 
-                icon: QrCode,
-                title: "Certificação NFT",
-                description: "Cada empresa recebe uma NFT única que certifica sua autenticidade via blockchain"
-              },
-              {
-                step: "03",
-                icon: ShoppingBag,
-                title: "Compra Segura",
-                description: "Produtos frescos e autênticos entregues diretamente na sua casa"
-              },
-              {
-                step: "04",
-                icon: Globe,
-                title: "Impacto Real",
-                description: "Sua compra fortalece a economia local e preserva tradições amazônicas"
-              }
-            ].map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <Card 
-                  key={index}
-                  className="text-center group hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50 relative"
-                >
+            {[{
+            step: "01",
+            icon: Users,
+            title: "Conheça o Produtor",
+            description: "Cada produto tem um rosto, uma história e uma localização específica em Belém"
+          }, {
+            step: "02",
+            icon: QrCode,
+            title: "Certificação NFT",
+            description: "Cada empresa recebe uma NFT única que certifica sua autenticidade via blockchain"
+          }, {
+            step: "03",
+            icon: ShoppingBag,
+            title: "Compra Segura",
+            description: "Produtos frescos e autênticos entregues diretamente na sua casa"
+          }, {
+            step: "04",
+            icon: Globe,
+            title: "Impacto Real",
+            description: "Sua compra fortalece a economia local e preserva tradições amazônicas"
+          }].map((step, index) => {
+            const Icon = step.icon;
+            return <Card key={index} className="text-center group hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50 relative">
                   <CardContent className="p-6 lg:p-8">
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
@@ -174,9 +162,8 @@ const Home = () => {
                     <h3 className="text-xl font-semibold text-terra mb-3">{step.title}</h3>
                     <p className="text-muted-foreground text-sm">{step.description}</p>
                   </CardContent>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
         </div>
       </section>
@@ -197,29 +184,21 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                icon: QrCode,
-                title: "NFT de Empresa",
-                description: "Cada empresa certificada recebe uma NFT única que comprova sua autenticidade e origem amazônica"
-              },
-              {
-                icon: Shield,
-                title: "Selo Blockchain",
-                description: "Tecnologia blockchain garante que não é possível falsificar ou duplicar certificações"
-              },
-              {
-                icon: Zap,
-                title: "Rastreabilidade Total",
-                description: "Do produtor até você: acompanhe toda a jornada do produto com transparência total"
-              }
-            ].map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <Card 
-                  key={index}
-                  className="text-center group hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50"
-                >
+            {[{
+            icon: QrCode,
+            title: "NFT de Empresa",
+            description: "Cada empresa certificada recebe uma NFT única que comprova sua autenticidade e origem amazônica"
+          }, {
+            icon: Shield,
+            title: "Selo Blockchain",
+            description: "Tecnologia blockchain garante que não é possível falsificar ou duplicar certificações"
+          }, {
+            icon: Zap,
+            title: "Rastreabilidade Total",
+            description: "Do produtor até você: acompanhe toda a jornada do produto com transparência total"
+          }].map((feature, index) => {
+            const Icon = feature.icon;
+            return <Card key={index} className="text-center group hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/80 backdrop-blur-sm border-border/50">
                   <CardContent className="p-6 lg:p-8">
                     <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all">
                       <Icon className="h-8 w-8 lg:h-10 lg:w-10 text-primary group-hover:scale-110 transition-transform" />
@@ -227,9 +206,8 @@ const Home = () => {
                     <h3 className="text-xl font-semibold text-terra mb-3">{feature.title}</h3>
                     <p className="text-muted-foreground">{feature.description}</p>
                   </CardContent>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
         </div>
       </section>
@@ -250,47 +228,37 @@ const Home = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                id: 1,
-                name: "Açaí Premium Orgânico",
-                price: 35.90,
-                image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000",
-                producer: "Cooperativa do Açaí",
-                category: "Alimentos",
-                rating: 4.8
-              },
-              {
-                id: 2,
-                name: "Artesanato Marajoara",
-                price: 120.00,
-                image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1000",
-                producer: "Artesãs da Amazônia",
-                category: "Artesanato",
-                rating: 4.9
-              },
-              {
-                id: 3,
-                name: "Óleo de Andiroba Natural",
-                price: 45.00,
-                image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1000",
-                producer: "Bioamazônia",
-                category: "Cosméticos",
-                rating: 4.7
-              }
-            ].map((product) => (
-              <Link key={product.id} to={`/produto/${product.id}`}>
+            {[{
+            id: 1,
+            name: "Açaí Premium Orgânico",
+            price: 35.90,
+            image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000",
+            producer: "Cooperativa do Açaí",
+            category: "Alimentos",
+            rating: 4.8
+          }, {
+            id: 2,
+            name: "Artesanato Marajoara",
+            price: 120.00,
+            image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1000",
+            producer: "Artesãs da Amazônia",
+            category: "Artesanato",
+            rating: 4.9
+          }, {
+            id: 3,
+            name: "Óleo de Andiroba Natural",
+            price: 45.00,
+            image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1000",
+            producer: "Bioamazônia",
+            category: "Cosméticos",
+            rating: 4.7
+          }].map(product => <Link key={product.id} to={`/produto/${product.id}`}>
                 <Card className="group overflow-hidden hover:shadow-amazonia transition-all duration-300 hover:-translate-y-1 bg-card/90 backdrop-blur-sm border-border/50">
                   <div className="relative overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/placeholder.svg";
-                      }}
-                    />
+                    <img src={product.image} alt={product.name} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" onError={e => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "/placeholder.svg";
+                }} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <Badge className="absolute top-3 left-3 bg-primary/90 text-primary-foreground shadow-lg">
                       <Shield className="h-3 w-3 mr-1" />
@@ -320,18 +288,13 @@ const Home = () => {
                       <p className="text-2xl font-bold text-primary">
                         R$ {product.price.toFixed(2)}
                       </p>
-                      <Button 
-                        size="sm" 
-                        variant="ghost" 
-                        className="opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-primary-foreground"
-                      >
+                      <Button size="sm" variant="ghost" className="opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-primary-foreground">
                         <ArrowRight className="h-4 w-4" />
                       </Button>
                     </div>
                   </CardContent>
                 </Card>
-              </Link>
-            ))}
+              </Link>)}
           </div>
           
           <div className="text-center mt-12">
@@ -375,8 +338,6 @@ const Home = () => {
           </Card>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
