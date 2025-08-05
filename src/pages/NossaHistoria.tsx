@@ -102,9 +102,13 @@ const NossaHistoria = () => {
               </div>
               <div className="relative">
                 <img
-                  src="/lovable-uploads/90aaa03b-cf9e-4399-b090-c6f73be9d301.png"
-                  alt="Vitrine da Amazônia"
+                  src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=2070"
+                  alt="Floresta Amazônica - Nossa História"
                   className="rounded-2xl shadow-amazonia w-full"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/placeholder.svg";
+                  }}
                 />
               </div>
             </div>
